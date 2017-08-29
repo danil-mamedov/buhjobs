@@ -1,23 +1,23 @@
 <div class="col-md-12">   
-    <h3>Активные вакансии ({{page.total_items}}) </h3>
-
+    <h4>Знайдено {{page.total_items}} вакансій</h4>
+</div>
     {% if page.items is defined %}
         {% for item in page.items %}
-
-        <div class="col-md-12">
-            <div class="col-md-1">
-                <span class="glyphicon glyphicon-eye-open"></span>
+            <div class="row">
+                <div class="col-md-12">
+                    <!--span class="label label-success">
+                        <span class="glyphicon glyphicon-leaf"></span> Новая вакансия
+                    </span-->
+                    <h3><a href='/vacancies/vacancy-{{item.id}}.html'>{{item.title}}, {{item.salary}} грн</a></h3>
+                </div>
+                <div class="col-md-12">
+                    <span class="glyphicon glyphicon-briefcase"></span> ООО Херня, 
+                    <span class='glyphicon glyphicon-map-marker' style='color: #ff5454'></span> Харьков
+                </div>
+                <div class="col-md-12">
+                    {{item.description}}
+                </div>
             </div>
-            <div class="col-md-11">
-                <a href='/vacancies/vacancy-{{item.id}}.html'>{{item.title}}, {{item.salary}} грн </a>
-            </div>
-        </div>
-        <div class="col-md-12">
-            {{item.description}}
-        </div>
-
-
-
         {% endfor %}
     {% endif %}
 
@@ -41,4 +41,3 @@
         </ul>
     {% endif %}
 
-</div>

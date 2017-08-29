@@ -4,11 +4,9 @@
         <link rel="stylesheet" href="/css/bootstrap.min.css">
         <link rel="stylesheet" href="/css/main.css">
         <link rel="stylesheet" href="/css/core.css">
-        <link href='https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.5/css/froala_editor.min.css' rel='stylesheet' type='text/css' />
-        <link href='https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.5/css/froala_style.min.css' rel='stylesheet' type='text/css' />
         <title>Анонімний пошук роботи для бухгалтерів</title>
     </head>
-    <body>
+    <body style='background: #f4f4f4'>
         <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -22,9 +20,9 @@
             </div>
             <div class="collapse navbar-collapse">
               <ul class="nav navbar-nav">
-                <li><a href="#">Главная</a></li>
-                <li><a href="#about">Вакансии</a></li>
-                <li><a href="#contact">Резюме</a></li>
+                <li><a href="/">Главная</a></li>
+                <li><a href="/vacancies/">Вакансии</a></li>
+                <li><a href="/resumes/">Резюме</a></li>
 
                     <li><a href="/login">Вход</a></li>
                     <li><a href="/registration">Регистрация</a></li>
@@ -42,7 +40,7 @@
                     <li><a href="/my/vacancies">Мои вакансии</a></li>
                 </ul> 
             </div>
-            <div class='col-md-10'>
+            <div class='col-md-10' style='background: white'>
                 {{ content() }}
             </div>
         </div>
@@ -50,9 +48,4 @@
     <script src="/js/jquery-3.2.1.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/main.js"></script>
-    <script src="/js/core.js"></script>
-    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.5/js/froala_editor.min.js'></script>
-    <script>
-
-    </script>
 </html>

@@ -53,7 +53,7 @@ $router->addPost("/my/vacancies/(\d+)[/]?",
 );
 
 // все вакансии
-$router->addGet("/vacancies/(\d+)[/]?", 
+$router->addGet("/vacancies[/]?", 
     [
         'module'     => 'frontend',
         'controller' => 'vacancies',
