@@ -1,0 +1,39 @@
+html, body {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+}
+dt, dd {
+  display: inline;
+  margin: 0;
+}
+body {
+    padding-top: 70px;
+}
+.label {
+    margin-right: 5px !important;
+}
+.label-xsmall {
+  vertical-align: super;
+  font-size: x-small;
+}
+
+.label-small {
+  vertical-align: super;
+  font-size: small;
+}
+
+.label-medium {
+  vertical-align: super;
+  font-size: medium;
+}
+
+.label-large {
+  vertical-align: super;
+  font-size: large;
+}
+
+.label-bs {
+  vertical-align: super;
+}
