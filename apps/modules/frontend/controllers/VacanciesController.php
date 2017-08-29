@@ -2,6 +2,7 @@
 
 namespace Multiple\Frontend\Controllers;
 
+
 use Multiple\Frontend\Models\Vacancies;
 use Multiple\Frontend\Forms\VacancyForm;
 use Phalcon\Paginator\Adapter\Model as PaginatorModel;
@@ -114,9 +115,34 @@ class VacanciesController extends ControllerBase
         //
         $this->response->redirect("my/vacancies/{$id}/");
     }
-    
+
+    /** 
+     * Action get create vacancies form 
+     */
     public function formAction()
     {
-        
+        $form = new VacancyForm();        
+        $this->view->form = $form;
+    }
+    
+    public function addAction()
+    {
+        $vacancy = new Vacancies();
+        $form    = new VacancyForm();       
+        $form->bind($this->request->getPost(), $vacancy);        
+        if(!$form->isValid()) {             
+            $this->view->errors = $form->getMessages();             
+            return $this->dispatcher->forward([
+                "controller" => "vacancies",
+                "action"     => "form",
+            ]);
+        } else {            
+            $save = $this->request->getPost();
+            $save['user_create_id'] = $this->session->get('auth_id');            
+            $vacancy->save($save, [
+                'title', 'salary', 'description', 'published_status_id', 'user_create_id'
+            ]);
+            $this->response->redirect("/my/vacancies/");
+        }
     }
 }

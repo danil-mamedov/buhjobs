@@ -26,20 +26,18 @@ class VacancyForm extends Form
     
     private function setPublishedStatusId()
     {
-        $field = new Select('published_status_id', 
-            [
-                0 => 'Да, опубликовать',
-                1 => 'Нет, скрыть'
-            ]
-        );
+        $field = new Select('published_status_id', [
+            0 => 'Да, опубликовать',
+            1 => 'Нет, скрыть'
+        ]);
         
-        $field->addValidator(new Between(
-            [
+        $field->addValidators([
+            new Between([
                 "minimum" => '0',
                 "maximum" => '1',
                 "message" => 'Не верно указан статус публикации',
-            ]
-        )); 
+            ])
+        ]); 
         
         $this->add($field);
     }
@@ -48,81 +46,62 @@ class VacancyForm extends Form
     {
         $field = new TextArea('description', [
             'placeholder' => 'Укажите опиание вакансии',
-            'required'    => true,
             'rows'        => 10,
             'cols'        => 50,
-            'resize'      => 'none'
-        ]);
-        
-        $field->addValidator(new PresenceOf(
-            [
+        ]);        
+        $field->addValidators([
+            new PresenceOf([
                 'message' => 'Описание вакансии обязательно к заполнению',
-            ]
-        ));
-        
+            ])
+        ]);        
+        $field->setLabel('Описание');        
         $this->add($field);
     }
-    
+
     private function setTitleField()
     {
         $field = new Text('title', [
-            'maxlength'   => 150,
-            'minlength'   => 3,
             'placeholder' => 'Название вакансии, например Главный бухгалтер',
-            'required'    => true
         ]);
 
-        $field->addValidator(new PresenceOf(
-            [
+        $field->addValidators([
+            new PresenceOf([
                 'message' => 'Название вакансии обязательно к заполнению',
-            ]
-        ));
-        
-        $field->addValidator(new StringLength(
-            [
+            ]),
+            new StringLength([
                 'max'            => 150,
                 'messageMaximum' => 'Слишком длинное название акансии',
                 'min'            => 3,
                 'messageMinimum' => 'Слишком короткое название акансии',
-            ]
-        ));
-
+            ])            
+        ]);  
+        
+        $field->setLabel('Название');     
+        
         $this->add($field);
     }
-    
+
     private function setSalaryField()
     {
         $field = new Numeric('salary', [
-            'maxlength'   => 50,
-            'minlength'   => 1,
-            'placeholder' => 'ЗП в грн.',
-            'required'    => true
+            'placeholder' => 'в грн',
         ]);
 
-        $field->addValidator(new PresenceOf(
-            [
-                'message' => 'ЗП обязательно к заполнению',
-            ]
-        ));
-        
-        $field->addValidator(new Numericality(
-            [
-                'message' => 'не верный формат числа',
-            ]
-        ));
-
-        $field->addValidator(new StringLength(
-            [
+        $field->addValidators([
+            new PresenceOf([
+                'message' => 'Заработная плата обязательно к заполнению',
+            ]),
+            new Numericality([
+                'message' => 'Не верный формат числа',
+            ]),
+            new StringLength([
                 'max'            => 50,
                 'messageMaximum' => 'Слишком длинное ЗП',
                 'min'            => 1,
                 'messageMinimum' => 'Слишком короткое ЗП',
-            ]
-        ));
-
+            ])
+        ]);
+        $field->setLabel('ЗП');  
         $this->add($field);
     }
-    
-    
-    
 }
