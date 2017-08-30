@@ -16,5 +16,22 @@ return new Config(
             "modelsDir"      => __DIR__ . "/../models/",
             "viewsDir"       => __DIR__ . "/../views/",
         ],
+        'permissons' => [
+            [
+                'role'     => 'accountant',
+                'resource' => 'profile',
+                'action'   => 'main'
+            ],
+            [
+                'role'     => 'accountant',
+                'resource' => 'profile',
+                'action'   => 'edit'
+            ],
+            [
+                'role'     => 'accountant',
+                'resource' => 'profile',
+                'action'   => 'edit'
+            ]
+        ]
     ]
 );

@@ -19,6 +19,8 @@ use Phalcon\Db\Adapter\Pdo\Mysql as DbAdapter;
 use Phalcon\Mvc\View\Engine\Volt as Volt;
 use Phalcon\Forms\Manager as FormsManager;
 use Multiple\Frontend\Components\Auth;
+use Multiple\Frontend\Components\Acl;
+
 
 
 class Module implements ModuleDefinitionInterface
@@ -44,7 +46,11 @@ class Module implements ModuleDefinitionInterface
 
     public function registerServices(DiInterface $di)
     {
-        $config = include __DIR__ . "/config/config.php";
+        $config    = include __DIR__ . "/config/config.php";
+        
+        $di->set('config', function () use ($config) {
+            return $config;
+        });
         
         $di->set('dispatcher', function() {
             $dispatcher = new Dispatcher();
@@ -124,10 +130,6 @@ class Module implements ModuleDefinitionInterface
         });	
         
         $di->set('db', function () use ($config) {
-            return new Response();
-        });
-
-        $di->set('db', function () use ($config) {
             return new DbAdapter([
                 "host"     => $config->database->host,
                 "username" => $config->database->username,
@@ -135,5 +137,10 @@ class Module implements ModuleDefinitionInterface
                 "dbname"   => $config->database->name,
             ]);
         });
+        
+        $di->set('acl', function () use ($config){            
+            return new Acl($config);
+        });
+        
     }
 }

@@ -2,8 +2,6 @@
 
 namespace Multiple\Frontend\Controllers;
 
-use \Multiple\Frontend\Models\Users as Users;
-
 class LoginController extends ControllerBase
 {   
     public function formAction()
@@ -15,13 +13,9 @@ class LoginController extends ControllerBase
     
     public function loginAction()
     {       
-        $user = Users::findFirstByEmail(
-            $this->request->getPost('email')
-        );
+        $auth = $this->auth->login($this->request->getPost());
         
-        if($user && $this->security->checkHash($this->request->getPost('password') . $user->salt, $user->password)) {
-            $this->session->set('auth_id', $user->id);
-        } else {
+        if(!$auth) {
             $this->view->status = 'Логин или пароль не верный';
         }
 
@@ -33,7 +27,7 @@ class LoginController extends ControllerBase
 
     public function logoutAction()
     {
-        $this->session->destroy();        
+        $this->auth->logout();        
         $this->response->redirect('/');
     }
 }

@@ -7,15 +7,6 @@ use Multiple\Frontend\Forms\ProfileForm;
 
 class ProfileController extends ControllerBase
 {   
-    public function beforeExecuteRoute()
-    {
-        if(!$this->session->has('auth_id')) {
-            $this->response->redirect('/');
-            return false;
-        }
-        
-    }
-    
     public function mainAction()
     {      
         
